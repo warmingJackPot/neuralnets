@@ -11,7 +11,7 @@ def random_matrix(n: int) -> np.array:
     :param n: matrix size
     :return: random n x n matrix
     """
-    return np.array(np.random.randint(0, 256, size= (n,n,3)),dtype = np.uint8)
+    return np.random.randint(0, 256, size=(n, n, 3), dtype=np.uint8)
 
 
 def broadcast_array(a: np.array, n: int) -> np.array:
@@ -53,7 +53,15 @@ def get_elements(a: np.array, indices: np.array) -> np.array:
     :param indices: 1D array
     :return: 1D array of elements
     """
-    return a
+    result = []
+    for idx in indices:
+        result.append(a[idx, idx])
+    return np.array(result)
+A = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+i = np.array([0, 1, 2])
+result = get_elements(A, i)
+print(result)
+
 
 
 def self_inners(a: np.array) -> np.array:
@@ -63,4 +71,4 @@ def self_inners(a: np.array) -> np.array:
     :param a:
     :return: 2D array of inners product shape=(m, m)
     """
-    return a
+    return np.dot(a, a.T)
